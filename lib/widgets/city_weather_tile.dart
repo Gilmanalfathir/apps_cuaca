@@ -28,8 +28,8 @@ class CityWeatherTile extends ConsumerWidget {
             0.0,
           ),
           child: Material(
-            color: index == 0 ? AppColors.skyBlue : AppColors.royalBlue,
-            elevation: index == 0 ? 12 : 0,
+            color: AppColors.royalBlue,
+            elevation: 0,
             borderRadius: BorderRadius.circular(25.0),
             child: Padding(
               padding: const EdgeInsets.symmetric(

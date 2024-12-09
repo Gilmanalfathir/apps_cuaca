@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import '/constants/app_colors.dart';
 import '/constants/text_styles.dart';
 import '/constants/constants.dart';
 import '/views/famous_cities_weather.dart';
 import '/views/gradient_container.dart';
 import '/widgets/round_text_field.dart';
+import '/utils/get_weather_icons.dart';
+import '/screens/weather_detail_screen.dart'; // Pastikan Anda sudah import WeatherDetailScreen
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -19,6 +20,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   late final TextEditingController _searchController;
   String _weatherInfo = '';
+  String? _weatherIcon;
   bool _isLoading = false;
 
   @override
@@ -38,6 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
     if (query.isEmpty) {
       setState(() {
         _weatherInfo = 'Please enter a city name.';
+        _weatherIcon = null;
       });
       return;
     }
@@ -45,6 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
     setState(() {
       _isLoading = true;
       _weatherInfo = '';
+      _weatherIcon = null;
     });
 
     try {
@@ -55,18 +59,24 @@ class _SearchScreenState extends State<SearchScreen> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        final weatherCode = data['weather'][0]['id']; // Get weather code
+
         setState(() {
           _weatherInfo =
-              'City: ${data['name']}\nTemperature: ${data['main']['temp']}°C\nWeather: ${data['weather'][0]['description']}';
+              '${data['main']['temp'].round()}°C\n${data['weather'][0]['description']}\n${data['name']}';
+          _weatherIcon =
+              getWeatherIcon(weatherCode: weatherCode); // Get weather icon
         });
       } else {
         setState(() {
           _weatherInfo = 'City not found. Please try again.';
+          _weatherIcon = null;
         });
       }
     } catch (e) {
       setState(() {
         _weatherInfo = 'An error occurred. Please try again later.';
+        _weatherIcon = null;
       });
     } finally {
       setState(() {
@@ -100,7 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: _searchController,
                 onSubmitted: (value) {
                   if (value.trim().isNotEmpty) {
-                    _searchWeather(); // searching func
+                    _searchWeather(); // searching function
                   }
                 },
               ),
@@ -116,10 +126,83 @@ class _SearchScreenState extends State<SearchScreen> {
         if (_isLoading)
           const CircularProgressIndicator()
         else if (_weatherInfo.isNotEmpty)
-          Text(
-            _weatherInfo,
-            style: TextStyles.bodyText,
-            textAlign: TextAlign.center,
+          InkWell(
+            onTap: () {
+              // Navigasi ke halaman detail cuaca
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WeatherDetailScreen(
+                    cityName:
+                        _searchController.text.trim(), // Mengirim nama kota
+                  ),
+                ),
+              );
+            },
+            child: Material(
+              color: AppColors.skyBlue,
+              elevation: 12,
+              borderRadius: BorderRadius.circular(25.0),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Column for weather icon, temperature, and description
+                    Row(
+                      children: [
+                        // Weather icon with increased size
+                        if (_weatherIcon != null)
+                          Image.asset(
+                            _weatherIcon!,
+                            width: 100, // Increase size here (adjust as needed)
+                          ),
+                        const SizedBox(width: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Checking if there are enough parts in _weatherInfo
+                            if (_weatherInfo.isNotEmpty)
+                              Text(
+                                _weatherInfo.contains('\n')
+                                    ? _weatherInfo.split('\n')[0] // Temperature
+                                    : _weatherInfo,
+                                style: TextStyles.h2.copyWith(
+                                    color: Colors.white.withOpacity(0.9)),
+                              ),
+                            const SizedBox(height: 10),
+                            if (_weatherInfo.contains('\n'))
+                              Text(
+                                _weatherInfo.split('\n').length > 1
+                                    ? _weatherInfo
+                                        .split('\n')[1] // Weather description
+                                    : '',
+                                style: TextStyles.h3.copyWith(
+                                    color: Colors.white.withOpacity(0.8)),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    // Column for the city name placed at the far right
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        // Check if the name exists in the API response
+                        if (_weatherInfo.isNotEmpty)
+                          Text(
+                            _weatherInfo.split('\n').length > 2
+                                ? _weatherInfo.split('\n')[2] // City name
+                                : '',
+                            style: TextStyles.h1.copyWith(color: Colors.white),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         const SizedBox(height: 30),
         const FamousCitiesWeather(),
