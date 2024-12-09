@@ -33,4 +33,10 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: Colors.white70,
   );
+
+  static const TextStyle bodyText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.black,
+  );
 }
