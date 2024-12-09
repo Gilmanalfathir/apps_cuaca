@@ -27,16 +27,16 @@ class RoundTextField extends StatelessWidget {
         controller: controller,
         onSubmitted: onSubmitted, // Trigger when user presses Enter
         decoration: const InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 15.0), // Padding for text
+          contentPadding: EdgeInsets.symmetric(vertical: 15.0), // Padding for text
           fillColor: Colors.white,
           focusColor: Colors.white,
-          prefixIcon: const Icon(
+          prefixIcon: Icon(
             Icons.search,
             color: AppColors.white,
           ),
           border: InputBorder.none,
           hintText: 'Search',
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             color: AppColors.white,
             fontWeight: FontWeight.w400,
           ),

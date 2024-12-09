@@ -19,8 +19,8 @@ class GradientContainer extends StatelessWidget {
         width: screenSize.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [        
               AppColors.darkblue.withOpacity(0.80),   
               AppColors.steelblue.withOpacity(0.85),     
