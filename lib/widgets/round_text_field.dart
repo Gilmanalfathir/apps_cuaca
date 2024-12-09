@@ -32,12 +32,12 @@ class RoundTextField extends StatelessWidget {
           focusColor: Colors.white,
           prefixIcon: const Icon(
             Icons.search,
-            color: AppColors.slate,
+            color: AppColors.white,
           ),
           border: InputBorder.none,
           hintText: 'Search',
           hintStyle: const TextStyle(
-            color: AppColors.slate,
+            color: AppColors.white,
             fontWeight: FontWeight.w400,
           ),
         ),

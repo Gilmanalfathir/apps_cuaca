@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '/constants/app_colors.dart';
 import '/screens/forecast_report_screen.dart';
 import '/screens/search_screen.dart';
-import '/screens/settings_screen.dart';
 import 'weather_screen/weather_screen.dart';
 import '/services/api_helper.dart';
 
@@ -21,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
     WeatherScreen(),
     SearchScreen(),
     ForecastReportScreen(),
-    SettingsScreen(),
   ];
 
   @override
@@ -58,11 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
             NavigationDestination(
               icon: Icon(Icons.wb_sunny_outlined, color: Colors.white),
               selectedIcon: Icon(Icons.wb_sunny, color: Colors.white),
-              label: '',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.settings_outlined, color: Colors.white),
-              selectedIcon: Icon(Icons.settings, color: Colors.white),
               label: '',
             ),
           ],

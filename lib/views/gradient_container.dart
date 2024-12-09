@@ -19,15 +19,12 @@ class GradientContainer extends StatelessWidget {
         width: screenSize.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-            colors: [
-              AppColors.charcoal.withOpacity(0.8),      // Start dengan warna lebih gelap tapi transparent
-              AppColors.charcoal.withOpacity(0.7),
-              AppColors.navyBlue.withOpacity(0.6),
-              AppColors.navyBlue.withOpacity(0.5),
-              AppColors.royalBlue.withOpacity(0.4),
-              AppColors.skyBlue.withOpacity(0.3), 
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [        
+              AppColors.darkblue.withOpacity(0.80),   
+              AppColors.steelblue.withOpacity(0.85),     
+              AppColors.lightblue.withOpacity(0.90),     
             ],
           ),
         ),
