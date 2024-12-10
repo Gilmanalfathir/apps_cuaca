@@ -96,12 +96,6 @@ class _SearchScreenState extends State<SearchScreen> {
             style: TextStyles.h1,
           ),
         ),
-        const SizedBox(height: 20),
-        const Text(
-          'Find the area or city that you want to know the detailed weather info at this time',
-          style: TextStyles.subtitleText,
-          textAlign: TextAlign.center,
-        ),
         const SizedBox(height: 40),
         Row(
           children: [
@@ -128,13 +122,13 @@ class _SearchScreenState extends State<SearchScreen> {
         else if (_weatherInfo.isNotEmpty)
           InkWell(
             onTap: () {
-              // Navigasi ke halaman detail cuaca
+              // Navigate to detail page
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => WeatherDetailScreen(
                     cityName:
-                        _searchController.text.trim(), // Mengirim nama kota
+                        _searchController.text.trim(), // set city name
                   ),
                 ),
               );
