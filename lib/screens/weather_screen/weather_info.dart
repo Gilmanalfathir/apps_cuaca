@@ -22,15 +22,15 @@ class WeatherInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           WeatherInfoTile(
-            title: 'Temp',
+            title: 'Suhu',
             value: '${weather.main.temp}°',
           ),
           WeatherInfoTile(
-            title: 'Wind',
+            title: 'Angin',
             value: '${weather.wind.speed.kmh} km/h',
           ),
           WeatherInfoTile(
-            title: 'Humidity',
+            title: 'Kelembaban',
             value: '${weather.main.humidity}%',
           ),
         ],
