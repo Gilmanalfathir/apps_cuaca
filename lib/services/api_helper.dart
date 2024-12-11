@@ -60,16 +60,16 @@ class ApiHelper {
 
   //! Build urls
   static String _constructWeatherUrl() =>
-      '$baseUrl/weather?lat=$lat&lon=$lon&units=metric&appid=${Constants.apiKey}';
+      '$baseUrl/weather?lat=$lat&lon=$lon&units=metric&appid=${Constants.apiKey}&lang=id';
 
   static String _constructForecastUrl() =>
-      '$baseUrl/forecast?lat=$lat&lon=$lon&units=metric&appid=${Constants.apiKey}';
+      '$baseUrl/forecast?lat=$lat&lon=$lon&units=metric&appid=${Constants.apiKey}&lang=id';
 
   static String _constructWeatherByCityUrl(String cityName) =>
-      '$baseUrl/weather?q=$cityName&units=metric&appid=${Constants.apiKey}';
+      '$baseUrl/weather?q=$cityName&units=metric&appid=${Constants.apiKey}&lang=id';
 
   static String _constructWeeklyForecastUrl() =>
-      '$weeklyWeatherUrl&latitude=$lat&longitude=$lon';
+      '$weeklyWeatherUrl&latitude=$lat&longitude=$lon&lang=id';
 
   //* Fetch Data for a url
   static Future<Map<String, dynamic>> _fetchData(String url) async {
