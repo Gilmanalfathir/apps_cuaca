@@ -74,7 +74,7 @@ class WeatherScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Today',
+                  'Hari Ini',
                   style: TextStyle(
                     fontSize: 20,
                     color: AppColors.white,

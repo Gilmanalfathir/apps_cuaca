@@ -25,8 +25,8 @@ class WeeklyForecastView extends ConsumerWidget {
             final dayOfWeek =
                 DateTime.parse(weatherData.daily.time[index]).dayOfWeek;
             final date = weatherData.daily.time[index];
-            final temp = weatherData.daily.temperature2mMax[index];
             final icon = weatherData.daily.weatherCode[index];
+            final temp = weatherData.daily.temperature2mMax[index];
 
             return WeeklyForecastTile(
               date: date,
@@ -58,8 +58,8 @@ class WeeklyForecastTile extends StatelessWidget {
     super.key,
     required this.day,
     required this.date,
-    required this.temp,
     required this.icon,
+    required this.temp,
   });
 
   final String day;

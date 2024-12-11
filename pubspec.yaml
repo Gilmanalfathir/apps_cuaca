@@ -17,6 +17,7 @@ dependencies:
   jiffy: ^6.3.2
   geolocator: ^13.0.2
   http: ^1.2.2
+  intl: ^0.20.1
 
 dev_dependencies:
   flutter_test:

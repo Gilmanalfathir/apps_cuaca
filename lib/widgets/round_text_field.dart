@@ -27,7 +27,7 @@ class RoundTextField extends StatelessWidget {
         controller: controller,
         onSubmitted: onSubmitted, // Trigger when user presses Enter
         decoration: const InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 15.0), // Padding for text
+          contentPadding: EdgeInsets.symmetric(vertical: 20.0), // Padding for text
           fillColor: Colors.white,
           focusColor: Colors.white,
           prefixIcon: Icon(
