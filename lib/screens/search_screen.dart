@@ -39,7 +39,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final query = _searchController.text.trim();
     if (query.isEmpty) {
       setState(() {
-        _weatherInfo = 'Please enter a city name.';
+        _weatherInfo = 'Masukkan nama kota.';
         _weatherIcon = null;
       });
       return;
@@ -69,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
         });
       } else {
         setState(() {
-          _weatherInfo = 'City not found. Please try again.';
+          _weatherInfo = 'Kota tidak ditemukan. Coba lagi!';
           _weatherIcon = null;
         });
       }
@@ -92,7 +92,7 @@ class _SearchScreenState extends State<SearchScreen> {
         const Align(
           alignment: Alignment.center,
           child: Text(
-            'Pick Location',
+            'Cari Lokasi',
             style: TextStyles.h1,
           ),
         ),
