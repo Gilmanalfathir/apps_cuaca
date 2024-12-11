@@ -53,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
     try {
       final url =
-          'https://api.openweathermap.org/data/2.5/weather?q=$query&appid=${Constants.apiKey}&units=metric';
+          'https://api.openweathermap.org/data/2.5/weather?q=$query&appid=${Constants.apiKey}&units=metric&lang=id';
 
       final response = await http.get(Uri.parse(url));
 
@@ -127,8 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => WeatherDetailScreen(
-                    cityName:
-                        _searchController.text.trim(), // set city name
+                    cityName: _searchController.text.trim(), // set city name
                   ),
                 ),
               );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '/constants/app_colors.dart';
 import '/constants/text_styles.dart';
@@ -27,9 +28,11 @@ class WeeklyForecastView extends ConsumerWidget {
             final date = weatherData.daily.time[index];
             final icon = weatherData.daily.weatherCode[index];
             final temp = weatherData.daily.temperature2mMax[index];
+            final formattedDate =
+                DateFormat('dd-MM-yyyy').format(DateTime.parse(date));
 
             return WeeklyForecastTile(
-              date: date,
+              date: formattedDate,
               day: dayOfWeek,
               icon: getWeatherIcon2(icon),
               temp: temp.round(),
@@ -98,18 +101,18 @@ class WeeklyForecastTile extends StatelessWidget {
             ],
           ),
 
+          // weather icon
+          Image.asset(
+            icon,
+            width: 60,
+          ),
+
           // Temperature
           SuperscriptText(
             text: '$temp',
             color: AppColors.white,
             superScript: '°C',
             superscriptColor: AppColors.white,
-          ),
-
-          // weather icon
-          Image.asset(
-            icon,
-            width: 60,
           ),
         ],
       ),
